@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/general.css">
+    <title>Meme Generator</title>
+</head>
+
+<body onload="onInit()">
+    <nav class="header-container">
+        <div class="main-header main-layout flex space-between">
+            <div class="logo">MemeSchmeme</div>
+            <ul class="main-nav flex">
+                <li><a class="gallery-link" href="#" onclick="onShowGallery(this)">Gallery</a></li>
+                <li><a href="#">Memes</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        </div>
+    </nav>
+    <div class="gallery-container">
+        <div class="search-bar flex">
+            <input oninput="onSearchGallery(this.value)" type="text" name="gallerySearch" class="search-gallery"
+                placeholder="Search"></input>
+            <div class="most-searched">Lorem ipsum dolor sit amet consectetur.</div>
+            <div class="more"><a href="#"> More</a></div>
+        </div>
+        <div class="gallery flex main-layout" id="mainGallery">
+            <img data-keywords="trump presidnt funny" data-idx="1" src="memes/1.jpg" alt="">
+            <img data-keywords="puppies puppy cute sweet" data-idx="2" src="memes/2.jpg" alt="">
+            <img data-keywords="baby cute sweet" data-idx="3" src="memes/3.jpg" alt="">
+            <img data-keywords="animal animals cat cute sweet sleepy" data-idx="4" src="memes/4.jpg" alt="">
+            <img data-keywords="success baby achievement achieved" data-idx="5" src="memes/5.jpg" alt="">
+            <img data-keywords="aliens history channel funny" data-idx="6" src="memes/6.jpg" alt="">
+            <img data-keywords="baby cute sweet funny" data-idx="7" src="memes/7.jpg" alt="">
+            <img data-keywords="charlie chocolate tell me more" data-idx="8" src="memes/8.jpg" alt="">
+            <img data-keywords="funny sneaky suspicious baby cute sweet" data-idx="9" src="memes/9.jpg" alt="">
+            <img data-keywords="obama president funny laugh" data-idx="10" src="memes/10.jpg" alt="">
+            <img data-keywords="kiss" data-idx="11" src="memes/11.jpg" alt="">
+            <img data-keywords="funny" data-idx="12" src="memes/12.jpg" alt="">
+            <img data-keywords="actor celebrate glass wine" data-idx="13" src="memes/13.jpg" alt="">
+            <img data-keywords="what if matrix" data-idx="14" src="memes/14.jpg" alt="">
+            <img data-keywords="one does not simply" data-idx="15" src="memes/15.jpg" alt="">
+            <img data-keywords="laughing laugh" data-idx="16" src="memes/16.jpg" alt="">
+            <img data-keywords="putin president badass" data-idx="17" src="memes/17.jpg" alt="">
+            <img data-keywords="toy story toy-story one day" data-idx="18" src="memes/18.jpg" alt="">
+        </div>
+        <div id="filteredGallery" class="gallery flex main-layout"></div>
+    </div>
+    <div class="meme-editor main-layout">
+        <div onmousedown="onCanvasClicked(event)" class="canvas-container">
+            <canvas id="memesCanvas" height="550" width="650" class="meme-canvas"></canvas>
+            <img src="" alt="" class="canvas-meme" hidden>
+        </div>
+        <div class="canvas-settings flex flex-column">
+            <input oninput="onDrawText(this.value.toUpperCase())" class="canvas-text playful-white" type="text"
+                name="memeText">
+            <div class="control-btns flex">
+                <button onclick="onSwitchLine()" class="switch-line small-btn"><i
+                        class="fas fa-arrow-down fa-2x"></i></button>
+                <button class="add-line small-btn"><i class="fas fa-plus fa-2x"></i></button>
+                <button onclick="renderCanvas()" class="clear-canvas small-btn"><i
+                        class="far fa-trash-alt fa-2x"></i></button>
+            </div>
+            <div class="canvas-options grid">
+                <button class="playful-white small-btn" onclick="onChangeCanvasProp('fontSize',undefined,2)"><img
+                        src="https://img.icons8.com/material-sharp/24/000000/increase-font.png" /></button>
+                <button class="playful-white small-btn" onclick="onChangeCanvasProp('fontSize',undefined,-2)"><img
+                        src="https://img.icons8.com/material-sharp/24/000000/decrease-font.png" /></button>
+                <button class="playful-white small-btn" onclick="onChangeCanvasProp('textAlign','left')"><i
+                        class="fas fa-align-left fa-2x"></i></button>
+                <button class="playful-white small-btn" onclick="onChangeCanvasProp('textAlign','center')"><i
+                        class="fas fa-align-center fa-2x"></i></button>
+                <button class="playful-white small-btn" onclick="onChangeCanvasProp('textAlign', 'right')"><i
+                        class="fas fa-align-right fa-2x"></i></button>
+                <select onchange="onChangeCanvasProp('fontFamily',this.value)" class="playful-white" name="chooseFont"
+                    id="chooseFont">
+                    <option value="impact">Impact</option>
+                    <option value="Lato">Lato</option>
+                    <option value="Poppins">Poppins</option>
+                </select>
+                <button class="playful-white small-btn">S</button>
+                <button class="color-container playful-white small-btn"><i class="fas fa-paint-brush fa-2x"></i><input type="color" name="colorPicker"
+                        id="colorPicker"></i></button>
+            </div>
+            <div class="sticker-menu flex">Sticker Menu</div>
+            <form class="download-and-share flex" action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                <input name="img" id="imgData" type="hidden" />
+                <button class="share" type="submit">Share</button>
+                <button class="download"><a href="#" onclick="onDownloadMeme(this)">Download</a></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/active-screen.js"></script>
+    <script src="js/gallery/gallery-service.js"></script>
+    <script src="js/gallery/gallery-controller.js"></script>
+    <script src="js/memeEditor/meme-storage-service.js"></script>
+    <script src="js/memeEditor/meme-service.js"></script>
+    <script src="js/memeEditor/meme-controller.js"></script>
+    <script src="js/upload-service.js"></script>
+    <script src="js/responsive-funcs.js"></script>
+</body>
+
+</html>
