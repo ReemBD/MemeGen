@@ -1,8 +1,5 @@
 @import 'desktop.css';
 @import 'mobile.css' screen and (max-width: 768px);
-
-
-
 * {
     box-sizing: border-box;
 }
@@ -31,7 +28,16 @@ a {
     text-decoration: none;
 }
 
+button a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
 input {
+    font-family: 'Poppins', 'sans-serif';
+}
+
+select {
     font-family: 'Poppins', 'sans-serif';
 }
 
@@ -67,19 +73,21 @@ button {
     background: #383B42;
 }
 
+
 /* MEME EDITOR */
 
 .meme-editor {
-    display:none;
+    display: none;
+    margin-bottom: 20px;
 }
 
 .meme-editor .canvas-settings {
-    justify-content: center;
+    justify-content: space-evenly;
     background: #383B42;
 }
 
 .canvas-settings .control-btns {
-    margin: auto;
+    margin: 0 auto;
     /* text-align: center; */
 }
 
@@ -165,6 +173,7 @@ button {
     box-shadow: inset 1px -5px 0 #72269e;
 }
 
+
 .meme-editor.active {
     display: flex;
 }
@@ -198,8 +207,8 @@ button {
     position: relative;
 }
 
-input[name="colorPicker"] {
-    position:absolute;
+input[name="colorPicker"], input[name="strokeStylePicker"] {
+    position: absolute;
     z-index: 1;
     width: 100%;
     height: 100%;
@@ -209,7 +218,8 @@ input[name="colorPicker"] {
     cursor: pointer;
 }
 
-
-
-
-
+select[name="chooseFont"] {
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding-inline-start: 20px;
+}

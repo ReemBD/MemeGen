@@ -9,7 +9,6 @@ function uploadImg(elForm, ev) {
            Share   
         </a>`
     }
-
     doUploadImg(elForm, onSuccess);
 }
 
@@ -19,11 +18,11 @@ function doUploadImg(elForm, onSuccess) {
         method: 'POST',
         body: formData
     })
-    .then(function (res) {
-        return res.text()
-    })
-    .then(onSuccess)
-    .catch(function (err) {
-        console.error(err)
-    })
+        .then(function (res) {
+            return res.text()
+        })
+        .then(onSuccess)
+        .catch(function (err) {
+            console.error(err)
+        })
 }

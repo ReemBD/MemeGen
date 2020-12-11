@@ -1,31 +1,26 @@
-let gCanvas;
-let gCtx;
-let gLineWidth = 450 * 0.8;
+let gCanvas = document.querySelector('.meme-canvas');
+let gCtx = gCanvas.getContext('2d')
 let gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'I never eat Falafel'.toUpperCase(),
-            size: 20,
-            align: 'left',
-            color: 'red',
+            txt: '',
+            fontSize: 40,
+            fontFamily: 'impact',
+            textAlign: 'left',
+            fillColor: 'white',
+            strokeStyle: 'black'
         },
         {
-            txt: 'But when I do, I fart.'.toUpperCase(),
-            size: 20,
-            align: 'left',
-            color: 'red',
+            txt: '',
+            fontSize: 40,
+            fontFamily: 'impact',
+            textAlign: 'left',
+            fillColor: 'white',
+            strokeStyle: 'black'
         }
     ]
-}
-
-let gCanvasProperties = {
-    fontSize: 40,
-    textAlign: 'center',
-    fontFamily: 'impact',
-    fontStyle: 'none',
-    fillColor: 'white'
 }
 setLines();
 
@@ -34,22 +29,54 @@ function getImgPath(id) {
     return `memes/${id}.jpg`;
 }
 
-function updateMemeTxt(txt) {
+function updateCurrLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt;
+}
+
+function updateselectedLineIdx() {
+    gMeme.selectedLineIdx = (!gMeme.selectedLineIdx) ? gMeme.selectedLineIdx = 1 : gMeme.selectedLineIdx = 0;
 }
 
 function drawText(text, x, y) {
     gCtx.lineWidth = '1.5'
-    gCtx.font = `${gCanvasProperties.fontSize}px ${gCanvasProperties.fontFamily}`
-    gCtx.textAlign = gCanvasProperties.textAlign;
-    gCtx.fillStyle = gCanvasProperties.fillColor;
-    const textWidth = measureText(text);
+    gCtx.font = `${gMeme.lines[gMeme.selectedLineIdx].fontSize}px ${gMeme.lines[gMeme.selectedLineIdx].fontFamily}`
+    gCtx.textAlign = gMeme.lines[gMeme.selectedLineIdx].textAlign;
+    gCtx.fillStyle = gMeme.lines[gMeme.selectedLineIdx].fillColor;
+    gCtx.strokeStyle = gMeme.lines[gMeme.selectedLineIdx].strokeStyle;
+    // const textWidth = measureText(text);
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
 }
 
 function measureText(txt) {
-    return gCtx.measureText(txt).width;
+    return gCtx.measureText(txt);
+}
+
+function getCurrLineFocus() {
+    let currLine = gMeme.lines[gMeme.selectedLineIdx];
+    let width = measureText(getCurrLineTxt()).width;
+    console.log('width ', width);
+    // let height = measureText(getCurrLineTxt()).height;
+    // console.log('height ', height);
+    drawRect(currLine.x - 20, currLine.y - currLine.fontSize, width + 40, 50);
+    // gCtx.stroke();
+}
+
+function clearLineFocus(idx) {
+    let line = gMeme.lines[idx];
+    let width = measureText(line.txt).width;
+    clearRect(line.x - 20, line.y - line.fontSize, width + 40, 50)
+}
+
+function drawRect(x, y, width, height) {
+    gCtx.beginPath()
+    gCtx.strokeStyle = 'black'
+    gCtx.rect(x, y, width, height) // x,y,widht,height
+    gCtx.stroke()
+}
+
+function clearRect(x, y, width, height) {
+    gCtx.clearRect(x, y, width, height)
 }
 
 function drawImg(img) {
@@ -60,30 +87,32 @@ function clearCanvas() {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
 }
 
-function changeFont(diff) {
-    gCanvasProperties.fontSize += diff;
+function clearTxtData() {
+    gMeme.lines.forEach((line) => line.txt = '');
+}
+
+function getCurrLineTxt() {
+    return gMeme.lines[gMeme.selectedLineIdx].txt;
+}
+
+function changeFontSize(diff) {
+    gMeme.lines[gMeme.selectedLineIdx].fontSize += diff;
 }
 
 function setLines() {
     const lines = gMeme.lines;
     lines.forEach((line, idx) => {
-        // const startLocation = 45 + ((gCanvasProperties.fontSize * line.txt.length) / 2)
         line.x = 220;
-        line.y = (!idx) ? 80 : 370;
-        // gCtx.strokeRect(line.x, line.y, 20 + gCanvasProperties.fontSize * line.txt.length, line.size * 3)
+        line.y = (!idx) ? 80 : gCanvas.height - 80;
     })
 }
 
-// function drawTxtBorders() {
-
-// }
-
-function getCurrLine() {
-    return gMeme.lines[gMeme.selectedLineIdx];
+function getSelectedLine(selectedLineIdx) {
+    return gMeme.lines[selectedLineIdx];
 }
 
 function getCanvasProperties() {
-    return gCanvasProperties;
+    return gMeme.lines[gMeme.selectedLineIdx];
 }
 function canvasClicked(ev) {
 

@@ -17,7 +17,7 @@
         <div class="main-header main-layout flex space-between">
             <div class="logo">MemeSchmeme</div>
             <ul class="main-nav flex">
-                <li><a class="gallery-link" href="#" onclick="onShowGallery(this)">Gallery</a></li>
+                <li><a class="gallery-link active" href="#" onclick="onShowGallery(this)">Gallery</a></li>
                 <li><a href="#">Memes</a></li>
                 <li><a href="#">About</a></li>
             </ul>
@@ -29,7 +29,7 @@
             <input oninput="onSearchGallery(this.value)" type="text" name="gallerySearch" class="search-gallery"
                 placeholder="Search"></input>
             <div class="most-searched">Lorem ipsum dolor sit amet consectetur.</div>
-            <div class="more"><a href="#"> More</a></div>
+            <button class="more"><a href="#"> More</a></button>
         </div>
         <div class="gallery flex main-layout" id="mainGallery">
             <img data-keywords="trump presidnt funny" data-idx="1" src="memes/1.jpg" alt="">
@@ -51,11 +51,11 @@
             <img data-keywords="putin president badass" data-idx="17" src="memes/17.jpg" alt="">
             <img data-keywords="toy story toy-story one day" data-idx="18" src="memes/18.jpg" alt="">
         </div>
-        <div id="filteredGallery" class="gallery flex main-layout"></div>
+        <!-- <div id="filteredGallery" class="gallery flex main-layout"></div> -->
     </div>
     <div class="meme-editor main-layout">
         <div onmousedown="onCanvasClicked(event)" class="canvas-container">
-            <canvas id="memesCanvas" height="550" width="650" class="meme-canvas"></canvas>
+            <canvas id="memesCanvas" height="580" width="550" class="meme-canvas"></canvas>
             <img src="" alt="" class="canvas-meme" hidden>
         </div>
         <div class="canvas-settings flex flex-column">
@@ -65,7 +65,7 @@
                 <button onclick="onSwitchLine()" class="switch-line small-btn"><i
                         class="fas fa-arrow-down fa-2x"></i></button>
                 <button class="add-line small-btn"><i class="fas fa-plus fa-2x"></i></button>
-                <button onclick="renderCanvas()" class="clear-canvas small-btn"><i
+                <button onclick="onClearCanvas()" class="clear-canvas small-btn"><i
                         class="far fa-trash-alt fa-2x"></i></button>
             </div>
             <div class="canvas-options grid">
@@ -85,12 +85,16 @@
                     <option value="Lato">Lato</option>
                     <option value="Poppins">Poppins</option>
                 </select>
-                <button class="playful-white small-btn">S</button>
-                <button class="color-container playful-white small-btn"><i class="fas fa-paint-brush fa-2x"></i><input type="color" name="colorPicker"
+                <button class="color-container playful-white small-btn"><i class="fab fa-stripe-s fa-lg"></i><input
+                    oninput="onChangeCanvasProp('strokeStyle',this.value)" type="color" name="strokeStylePicker"
+                    id="strokeStylePicker"></button>
+                <button class="color-container playful-white small-btn"><i class="fas fa-paint-brush fa-2x"></i><input
+                        oninput="onChangeCanvasProp('fillColor',this.value)" type="color" name="colorPicker"
                         id="colorPicker"></i></button>
             </div>
             <div class="sticker-menu flex">Sticker Menu</div>
-            <form class="download-and-share flex" action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+            <form class="download-and-share flex" action="" method="POST" enctype="multipart/form-data"
+                onsubmit="uploadImg(this, event)">
                 <input name="img" id="imgData" type="hidden" />
                 <button class="share" type="submit">Share</button>
                 <button class="download"><a href="#" onclick="onDownloadMeme(this)">Download</a></button>
@@ -106,6 +110,7 @@
     <script src="js/memeEditor/meme-controller.js"></script>
     <script src="js/upload-service.js"></script>
     <script src="js/responsive-funcs.js"></script>
+    <script src="js/onload.js"></script>
 </body>
 
 </html>

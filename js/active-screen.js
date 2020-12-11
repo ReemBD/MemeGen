@@ -10,3 +10,5 @@ function onChangeActiveScreen(el) {
     updateActiveScreen(el)
     gCurrActiveScreen.classList.add('active');
 }
+
+

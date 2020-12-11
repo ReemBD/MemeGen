@@ -1,12 +1,4 @@
-// let gIsMovingText = false;
 
-function onInit() {
-    gCanvas = document.querySelector('#memesCanvas');
-    gCtx = gCanvas.getContext('2d');
-    onDrawImg();
-    onDrawText(gMeme.lines[0].txt);
-    addGalleryImgClickListener();
-}
 
 function renderCanvas() {
     clearCanvas();
@@ -21,20 +13,28 @@ function onDrawImg() {
 
 function onDrawText(text) {
     renderCanvas();
-    updateMemeTxt(text);
+    updateCurrLineTxt(text);
     const firstLine = gMeme.lines[0]
     drawText(firstLine.txt, firstLine.x, firstLine.y)
     if (gMeme.lines.length > 1) {
-        const currLine = getCurrLine();
-        drawText(currLine.txt, currLine.x, currLine.y);
+        const secondLine = getSelectedLine(1);
+        drawText(secondLine.txt, secondLine.x, secondLine.y);
     }
-    setLines()
+    getCurrLineFocus()
+}
+
+function onClearCanvas() {
+    renderCanvas();
+    clearTxtData();
+    gMeme.selectedLineIdx = 0;
+    document.querySelector('.canvas-text').value = '';
+
 }
 
 function onSwitchLine() {
-    gMeme.selectedLineIdx = (!gMeme.selectedLineIdx) ? gMeme.selectedLineIdx = 1 : gMeme.selectedLineIdx = 0;
-    setLines();
-    document.querySelector('.canvas-text').value = '';
+    updateselectedLineIdx();
+    document.querySelector('.canvas-text').value = getCurrLineTxt();
+    getCurrLineFocus();
 }
 
 
@@ -73,14 +73,14 @@ function onDownloadMeme(elLink) {
 function onChangeCanvasProp(prop, value, diff = null) {
     const firstLine = gMeme.lines[0];
     renderCanvas();
-    if (diff) changeFont(diff)
+    if (diff) changeFontSize(diff)
     else {
         getCanvasProperties()[prop] = value;
     }
     drawText(firstLine.txt, firstLine.x, firstLine.y)
     if (gMeme.lines.length > 1) {
-        const currLine = getCurrLine();
-        drawText(currLine.txt, currLine.x, currLine.y);
+        const secondLine = getSelectedLine(1);
+        drawText(secondLine.txt, secondLine.x, secondLine.y);
     }
 }
 

@@ -17,6 +17,10 @@
     
 }
 
+.main-header .main-nav {
+    align-items: center;
+    margin-inline-end: 20px;
+}
 
 .main-header .logo {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -114,6 +118,9 @@
     transform: scale(1.05);
 }
 
+.gallery.filtered img{
+    flex-grow: unset;
+}
 /* MEME EDITOR */
 
 .meme-editor {
@@ -123,15 +130,16 @@
 
 .meme-editor .canvas-settings {
     flex-grow: 1;
-    padding: 24px 40px;
+    padding: 0 40px;
     border-radius: 20px;
+    
 }
 
 .meme-editor .canvas-options {
     grid-template-columns: repeat(5, 52px);
     grid-template-rows: repeat(2, 1fr);
     align-self: center;
-    grid-gap: 5px;
+    grid-gap: 20px;
 }
 
 .meme-editor .canvas-options select[name='chooseFont'] {
