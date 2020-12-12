@@ -1,0 +1,6 @@
+@keyframes on-save-meme {
+    10% {
+        content: 'Saved!';
+        background-color: red;
+    }
+}

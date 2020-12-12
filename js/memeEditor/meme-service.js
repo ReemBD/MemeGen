@@ -1,3 +1,4 @@
+
 let gCanvas = document.querySelector('.meme-canvas');
 let gCtx = gCanvas.getContext('2d')
 let gMeme = {
@@ -109,6 +110,7 @@ function getSelectedLine(selectedLineIdx) {
 function getCanvasProperties() {
     return gMeme.lines[gMeme.selectedLineIdx];
 }
+
 function canvasClicked(ev) {
 
     const { offsetX, offsetY } = ev;

@@ -53,19 +53,6 @@ function onCanvasClicked(ev) {
     canvasClicked(ev);
 }
 
-function addGalleryImgClickListener() {
-    const elImages = document.querySelectorAll('.gallery img')
-    elImages.forEach((img) => {
-        img.addEventListener('click', () => {
-            gMeme.selectedImgId = +img.dataset.idx;
-            onDrawImg();
-            const elEditor = document.querySelector('.meme-editor');
-            onChangeActiveScreen(elEditor);
-            document.querySelector('.gallery-link').classList.remove('active');
-        })
-    })
-}
-
 function onDownloadMeme(elLink) {
     const data = gCanvas.toDataURL();
     elLink.href = data;
@@ -86,7 +73,7 @@ function onMouseMove(ev) {
     const clickedLine = canvasClicked(ev)
     const { offsetX, offsetY } = ev;
     if (clickedLine && gIsDraggingLine) {
-        clickedLine.x = offsetX - (measureText(clickedLine.txt).width/2);
+        clickedLine.x = offsetX - (measureText(clickedLine.txt).width / 2);
         clickedLine.y = offsetY + 25;
         renderCanvas();
     }

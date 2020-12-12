@@ -1,4 +1,4 @@
 function onInit() {
     onDrawImg();
-    addGalleryImgClickListener();
+    renderGallery();
 }

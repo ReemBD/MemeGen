@@ -1,23 +1,20 @@
 
-let gElGallery = document.querySelectorAll('#mainGallery img');
-let gElImages = Array.from(gElGallery);
-
-function renderGallery(images) {
-    let strHTMLs = images.map(img => {
-        return `<img data-idx="${img.dataset.idx}" src="${img.src}"></img>`
+function renderGallery() {
+    var elSearch = document.querySelector('.search-gallery')
+    var images = getImagesForDisplay(gImages, elSearch.value);
+    var strHTMLs = images.map((img) => {
+        return getImgHTML(img)
     })
     let gallery = document.querySelector('#mainGallery.filtered')
     if (!gallery) { gallery = document.querySelector('#mainGallery') }
     gallery.innerHTML = strHTMLs.join('');
 }
 
+
 function onSearchGallery(str) {
-    const elSearch = document.querySelector('.search-gallery');
-    if (!elSearch.value) toggleFilteredGalleryOff();
+    if (!str) toggleFilteredGalleryOff();
     else toggleFilteredGalleryOn();
-    const images = getImagesForDisplay(gElImages, str);
-    renderGallery(images)
-    addFilteredGalleryListener();
+    renderGallery()
 }
 
 function hideMainGallery() {
@@ -27,35 +24,26 @@ function hideMainGallery() {
 
 function onShowGallery(elLink) {
     const elGallery = document.querySelector('.gallery-container')
-    onChangeActiveScreen(elGallery);
+    onChangeActiveScreen(elGallery, elLink);
     elLink.classList.add('active');
-    const elEditor = document.querySelector('.meme-editor')
 }
 
-function addFilteredGalleryListener() {
-    let gallery = document.querySelector('#mainGallery.filtered');
-    if (!gallery) gallery = document.querySelector('#mainGallery');
-    let images = gallery.querySelectorAll('img');
-    console.log('images: ', images);;
-    images.forEach((img) => {
-        img.addEventListener('click', () => {
-            gMeme.selectedImgId = +img.dataset.idx;
-            onDrawImg();
-            const elEditor = document.querySelector('.meme-editor');
-            onChangeActiveScreen(elEditor);
-            document.querySelector('.gallery-link').classList.remove('active');
-        })
-    })
+function onClickImg(id) {
+    gMeme.selectedImgId = id;
+    onDrawImg();
+    const elEditor = document.querySelector('.meme-editor');
+    onChangeActiveScreen(elEditor);
+    document.querySelector('.gallery-link').classList.remove('active');
 }
 
 function getImagesForDisplay(images, str) {
-    const matchingImages = images.reduce((acc, img) => {
-        const imgKeywords = img.dataset.keywords.split(' ');
-        if (imgKeywords.includes(str) || imgKeywords.find((keyword) => { return (str === keyword.substring(0, str.length)) })) acc.push(img);
-        return acc;
-    }, [])
+    const matchingImages = images.filter((img) => {
+        let imgKeywords = img.keywords;
+        return (imgKeywords.includes(str) || imgKeywords.find(keyword => { return (keyword.substring(0, str.length)) === str }));
+
+    })
     if (str) return matchingImages;
-    else return gElImages;
+    else return images;
 }
 
 function toggleFilteredGalleryOn() {

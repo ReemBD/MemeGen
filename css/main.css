@@ -1,0 +1,254 @@
+@import 'desktop.css';
+@import 'mobile.css' screen and (max-width: 768px);
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: #22252C;
+    color: white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+button a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+input {
+    font-family: 'Poppins', 'sans-serif';
+}
+
+select {
+    font-family: 'Poppins', 'sans-serif';
+}
+
+input:focus, select:focus {
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.small-btn {
+    width: 52px;
+    height: 52px;
+}
+
+/* GALLERY */
+
+.gallery-container {
+    display: none;
+}
+
+.gallery-container.active {
+    display: block;
+}
+
+/* CANVAS */
+
+.canvas-container {
+    background: #383B42;
+}
+
+/* MEME EDITOR */
+
+.meme-editor {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.meme-editor .canvas-settings {
+    justify-content: space-evenly;
+    background: #383B42;
+}
+
+.canvas-settings .control-btns {
+    margin: 0 auto;
+    /* text-align: center; */
+}
+
+.canvas-settings .control-btns button:not(:first-child) {
+    margin-left: 21px;
+}
+
+.control-btns button {
+    border-radius: 10px;
+    transition: transform .3s;
+}
+
+.control-btns button:hover {
+    border-radius: 10px;
+    transform: scale(1.1);
+}
+
+.control-btns .switch-line {
+    background: linear-gradient(355deg, rgba(76, 183, 210, 1) 41%, rgba(38, 165, 197, 1) 57%);
+    box-shadow: inset 0px -5px 0 #048B97;
+    /* box-shadow: inset 0px 6px 0 #59C1D8; */
+}
+
+.control-btns .add-line {
+    background: linear-gradient(0deg, rgba(61, 210, 84, 1) 44%, rgba(57, 190, 78, 1) 66%);
+    box-shadow: inset 1px -4px 0 #015D33;
+}
+
+.control-btns .clear-canvas {
+    background: linear-gradient(172deg, rgba(232, 68, 54, 1) 44%, rgba(215, 41, 55, 1) 65%);
+    box-shadow: inset 0px -5px 0 #8C0606;
+}
+
+.control-btns button i {
+    color: white;
+    text-shadow: -3px 1px 0px black;
+}
+
+.meme-editor .canvas-settings>* {
+    text-align: center;
+    margin-bottom: 17px;
+}
+
+.canvas-settings .canvas-options {
+    padding: 17px 10px;
+}
+
+.canvas-options {
+    background-color: #19A59F;
+    border-radius: 20px;
+}
+
+.canvas-options button {
+    flex-grow: 1;
+    text-align: center;
+    border-radius: 10px;
+    transition: transform, background-color, .3s;
+}
+
+.canvas-options button:hover {
+    background-color: rgb(170, 166, 166);
+    box-shadow: none;
+    transform: scale(1.05);
+}
+
+.canvas-options button {
+    max-width: 56px;
+}
+
+.canvas-settings .canvas-text {
+    font-size: 2rem;
+}
+
+.media .share {
+    color: white;
+    background-color: #1E7CD3;
+    box-shadow: inset 1px -5px 0 #165C9C;
+}
+
+.media .download {
+    color: white;
+    background: #8F44BB;
+    box-shadow: inset 1px -5px 0 #72269e;
+}
+
+.media .save {
+    color: white;
+    background: rgb(5, 182, 50);
+    box-shadow: inset 1px -5px 0 rgb(6, 117, 34);
+    transition: color,content .3s;
+}
+
+.media .save:active {
+    color: red;
+    text-decoration: bold;
+}
+.media .save:active::after {
+    content: 'd!';
+}
+
+.media .share:hover, .download:hover, .save:hover {
+    box-shadow: inset -2px 3px 0 #95afc6;
+}
+
+.meme-editor.active {
+    display: flex;
+}
+
+/* SAVED MEMES GALLERY */
+
+.saved-memes-gallery {
+    display: none;
+    margin-top: 100px;
+}
+
+.saved-memes-gallery.active {
+    display: flex;
+}
+
+/* HELPERS */
+
+.space-between {
+    justify-content: space-between;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.grid {
+    display: grid;
+}
+
+.playful-white {
+    background-color: #EBEEF3;
+    box-shadow: inset 3px -5px 0 #BBC4D1;
+    padding: 10px 0;
+    border-radius: 20px;
+}
+
+.color-container {
+    position: relative;
+}
+
+input[name="colorPicker"], input[name="strokeStylePicker"] {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+select[name="chooseFont"] {
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding-inline-start: 20px;
+}

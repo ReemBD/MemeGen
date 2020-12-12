@@ -1,7 +1,7 @@
 /* MAIN-LAYOUT */
 
 .main-layout {
-    max-width: 1294px;
+    max-width: 1344px;
     margin: 0 auto;
 }
 
@@ -63,7 +63,7 @@
 
 .gallery-container {
     background-color: #383B42;
-    margin: 70px 10px 10px;
+    margin: 100px 30px 10px;
     padding: 20px 20px 30px 20px;
     border-radius: 10px;
 }
@@ -152,12 +152,12 @@
 
 .download-and-share {
     justify-content: space-between;
-    gap: 60px;
+    
 }
 
-.download, .share {
-    flex-grow: 1;
-    padding: 10px;
+.download, .share,.save {
+    padding: 10px 0;
+    width: 12em;
     border-radius: 20px;
 }
 
