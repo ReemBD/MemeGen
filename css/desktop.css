@@ -32,16 +32,19 @@
     display: block;
     width: 74px;
     border-radius: 20px;
+    transition: transform .3s;
 }
 
 .main-header .main-nav a.active {
     color: rgba(46, 185, 118, 1);
     background-color: #FEFEFE;
+    transform: scale(1.2);
 }
 
 .main-header .main-nav a:hover {
     color: rgba(46, 185, 118, 1);
     background-color: #FEFEFE;
+    /* transform: scale(1.1); */
 }
 
 .main-header .main-nav li {
@@ -156,4 +159,16 @@
     flex-grow: 1;
     padding: 10px;
     border-radius: 20px;
+}
+
+@media screen and (min-width: 1075px) {
+    .gallery img:nth-last-of-type(3),img:nth-last-of-type(2),img:last-of-type {
+        max-width: 285px;
+    }
+}
+
+@media screen and (min-width: 1354px) {
+    .gallery img:nth-last-of-type(3),img:nth-last-of-type(2),img:last-of-type {
+        max-width: 255px;
+    }
 }

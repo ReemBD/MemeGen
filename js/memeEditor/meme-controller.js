@@ -1,8 +1,14 @@
-
+let gIsDraggingLine = false;
 
 function renderCanvas() {
     clearCanvas();
     onDrawImg();
+    const firstLine = gMeme.lines[0]
+    drawText(firstLine.txt, firstLine.x, firstLine.y)
+    if (gMeme.lines.length > 1) {
+        const secondLine = getSelectedLine(1);
+        drawText(secondLine.txt, secondLine.x, secondLine.y);
+    }
 }
 
 function onDrawImg() {
@@ -12,20 +18,14 @@ function onDrawImg() {
 }
 
 function onDrawText(text) {
-    renderCanvas();
     updateCurrLineTxt(text);
-    const firstLine = gMeme.lines[0]
-    drawText(firstLine.txt, firstLine.x, firstLine.y)
-    if (gMeme.lines.length > 1) {
-        const secondLine = getSelectedLine(1);
-        drawText(secondLine.txt, secondLine.x, secondLine.y);
-    }
+    renderCanvas();
     getCurrLineFocus()
 }
 
 function onClearCanvas() {
-    renderCanvas();
     clearTxtData();
+    renderCanvas();
     gMeme.selectedLineIdx = 0;
     document.querySelector('.canvas-text').value = '';
 
@@ -34,6 +34,8 @@ function onClearCanvas() {
 function onSwitchLine() {
     updateselectedLineIdx();
     document.querySelector('.canvas-text').value = getCurrLineTxt();
+    clearPrevLineFocus();
+    renderCanvas();
     getCurrLineFocus();
 }
 
@@ -71,24 +73,24 @@ function onDownloadMeme(elLink) {
 }
 
 function onChangeCanvasProp(prop, value, diff = null) {
-    const firstLine = gMeme.lines[0];
-    renderCanvas();
     if (diff) changeFontSize(diff)
-    else {
-        getCanvasProperties()[prop] = value;
-    }
-    drawText(firstLine.txt, firstLine.x, firstLine.y)
-    if (gMeme.lines.length > 1) {
-        const secondLine = getSelectedLine(1);
-        drawText(secondLine.txt, secondLine.x, secondLine.y);
-    }
+    else getCanvasProperties()[prop] = value;
+    renderCanvas();
 }
 
+function toggleDragStatus() {
+    gIsDraggingLine = !gIsDraggingLine;
+}
 
-
-
-
-
+function onMouseMove(ev) {
+    const clickedLine = canvasClicked(ev)
+    const { offsetX, offsetY } = ev;
+    if (clickedLine && gIsDraggingLine) {
+        clickedLine.x = offsetX - (measureText(clickedLine.txt).width/2);
+        clickedLine.y = offsetY + 25;
+        renderCanvas();
+    }
+}
 
 
 

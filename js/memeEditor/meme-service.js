@@ -39,11 +39,10 @@ function updateselectedLineIdx() {
 
 function drawText(text, x, y) {
     gCtx.lineWidth = '1.5'
-    gCtx.font = `${gMeme.lines[gMeme.selectedLineIdx].fontSize}px ${gMeme.lines[gMeme.selectedLineIdx].fontFamily}`
+    gCtx.font = `${gMeme.lines[gMeme.selectedLineIdx].fontSize}px` + ' ' + gMeme.lines[gMeme.selectedLineIdx].fontFamily;
     gCtx.textAlign = gMeme.lines[gMeme.selectedLineIdx].textAlign;
     gCtx.fillStyle = gMeme.lines[gMeme.selectedLineIdx].fillColor;
     gCtx.strokeStyle = gMeme.lines[gMeme.selectedLineIdx].strokeStyle;
-    // const textWidth = measureText(text);
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
 }
@@ -55,23 +54,19 @@ function measureText(txt) {
 function getCurrLineFocus() {
     let currLine = gMeme.lines[gMeme.selectedLineIdx];
     let width = measureText(getCurrLineTxt()).width;
-    console.log('width ', width);
-    // let height = measureText(getCurrLineTxt()).height;
-    // console.log('height ', height);
     drawRect(currLine.x - 20, currLine.y - currLine.fontSize, width + 40, 50);
-    // gCtx.stroke();
 }
 
-function clearLineFocus(idx) {
-    let line = gMeme.lines[idx];
+function clearPrevLineFocus() {
+    let line = (gMeme.selectedLineIdx) ? gMeme.lines[0] : gMeme.lines[1]
     let width = measureText(line.txt).width;
     clearRect(line.x - 20, line.y - line.fontSize, width + 40, 50)
 }
 
 function drawRect(x, y, width, height) {
     gCtx.beginPath()
-    gCtx.strokeStyle = 'black'
-    gCtx.rect(x, y, width, height) // x,y,widht,height
+    gCtx.strokeStyle = '#403748'
+    gCtx.rect(x, y, width, height)
     gCtx.stroke()
 }
 
@@ -96,7 +91,7 @@ function getCurrLineTxt() {
 }
 
 function changeFontSize(diff) {
-    gMeme.lines[gMeme.selectedLineIdx].fontSize += diff;
+    gMeme.lines.forEach((line) => line.fontSize += diff);
 }
 
 function setLines() {
@@ -119,13 +114,10 @@ function canvasClicked(ev) {
     const { offsetX, offsetY } = ev;
     const lines = gMeme.lines;
 
-    console.log(offsetX, offsetY);
     let clickedLine = lines.find(line => {
-        console.log('lineX lineY ', line.x, line.y);
-        return offsetX >= line.x && offsetX <= line.x + gLineWidth
-            && offsetY >= line.y && offsetY < line.y + line.size;
+        return offsetX >= line.x && offsetX <= line.x + measureText(line).width - 60
+            && offsetY >= line.y - 50 && offsetY < line.y;
     })
-    if (clickedLine) console.log('text!');
-    else console.log('not text');
+    return clickedLine
 }
 

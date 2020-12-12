@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
         integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link rel="stylesheet" href="css/general.css">
@@ -54,8 +55,8 @@
         <!-- <div id="filteredGallery" class="gallery flex main-layout"></div> -->
     </div>
     <div class="meme-editor main-layout">
-        <div onmousedown="onCanvasClicked(event)" class="canvas-container">
-            <canvas id="memesCanvas" height="580" width="550" class="meme-canvas"></canvas>
+        <div  class="canvas-container">
+            <canvas onmousemove="onMouseMove(event)" onmousedown="toggleDragStatus()" onmouseup="toggleDragStatus()" id="memesCanvas" height="580" width="550" class="meme-canvas"></canvas>
             <img src="" alt="" class="canvas-meme" hidden>
         </div>
         <div class="canvas-settings flex flex-column">
@@ -84,6 +85,7 @@
                     <option value="impact">Impact</option>
                     <option value="Lato">Lato</option>
                     <option value="Poppins">Poppins</option>
+                    <option value="Indie Flower">Indie Flower</option>
                 </select>
                 <button class="color-container playful-white small-btn"><i class="fab fa-stripe-s fa-lg"></i><input
                     oninput="onChangeCanvasProp('strokeStyle',this.value)" type="color" name="strokeStylePicker"
