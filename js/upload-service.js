@@ -10,7 +10,6 @@ function uploadImg(elForm, ev) {
         </a>`
     }
     doUploadImg(elForm, onSuccess);
-    document.querySelector('.share a').click();
 }
 
 function doUploadImg(elForm, onSuccess) {

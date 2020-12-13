@@ -26,6 +26,7 @@
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 2.5rem;
     padding: 10px;
+    user-select: none;
 }
 
 .main-header .main-nav a {
@@ -101,6 +102,7 @@
 }
 
 .gallery {
+    width:100%;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: flex-start;
@@ -161,7 +163,7 @@
     border-radius: 20px;
 }
 
-@media screen and (min-width: 1075px) {
+/* @media screen and (min-width: 1075px) {
     .gallery img:nth-last-of-type(3),img:nth-last-of-type(2),img:last-of-type {
         max-width: 285px;
     }
@@ -171,4 +173,4 @@
     .gallery img:nth-last-of-type(3),img:nth-last-of-type(2),img:last-of-type {
         max-width: 255px;
     }
-}
+} */

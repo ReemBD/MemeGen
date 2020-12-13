@@ -34,16 +34,16 @@ function updateCurrLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt;
 }
 
-function updateselectedLineIdx() {
-    gMeme.selectedLineIdx = (!gMeme.selectedLineIdx) ? gMeme.selectedLineIdx = 1 : gMeme.selectedLineIdx = 0;
+function updateselectedLineIdx(idx) {
+    gMeme.selectedLineIdx = idx;
 }
 
-function drawText(text, x, y) {
+function drawText(text, x, y,idx) {
     gCtx.lineWidth = '1.5'
-    gCtx.font = `${gMeme.lines[gMeme.selectedLineIdx].fontSize}px` + ' ' + gMeme.lines[gMeme.selectedLineIdx].fontFamily;
-    gCtx.textAlign = gMeme.lines[gMeme.selectedLineIdx].textAlign;
-    gCtx.fillStyle = gMeme.lines[gMeme.selectedLineIdx].fillColor;
-    gCtx.strokeStyle = gMeme.lines[gMeme.selectedLineIdx].strokeStyle;
+    gCtx.font = `${gMeme.lines[idx].fontSize}px` + ' ' + gMeme.lines[gMeme.selectedLineIdx].fontFamily;
+    gCtx.textAlign = gMeme.lines[idx].textAlign;
+    gCtx.fillStyle = gMeme.lines[idx].fillColor;
+    gCtx.strokeStyle = gMeme.lines[idx].strokeStyle;
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
 }
@@ -55,7 +55,7 @@ function measureText(txt) {
 function getCurrLineFocus() {
     let currLine = gMeme.lines[gMeme.selectedLineIdx];
     let width = measureText(getCurrLineTxt()).width;
-    drawRect(currLine.x - 20, currLine.y - currLine.fontSize, width + 40, 50);
+    drawRect(currLine.x - 20, currLine.y - currLine.fontSize, width + 40, currLine.fontSize + 10);
 }
 
 function clearPrevLineFocus() {
@@ -117,7 +117,7 @@ function canvasClicked(ev) {
     const lines = gMeme.lines;
 
     let clickedLine = lines.find(line => {
-        return offsetX >= line.x && offsetX <= line.x + measureText(line).width - 60
+        return offsetX >= line.x && offsetX <= line.x + measureText(line).width
             && offsetY >= line.y - 50 && offsetY < line.y;
     })
     return clickedLine

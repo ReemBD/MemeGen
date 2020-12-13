@@ -70,9 +70,6 @@ button {
 
 /* CANVAS */
 
-.canvas-container {
-    background: #383B42;
-}
 
 /* MEME EDITOR */
 
@@ -177,13 +174,14 @@ button {
     color: white;
     background: rgb(5, 182, 50);
     box-shadow: inset 1px -5px 0 rgb(6, 117, 34);
-    transition: color,content .3s;
+    transition: color, content .3s;
 }
 
 .media .save:active {
     color: red;
     text-decoration: bold;
 }
+
 .media .save:active::after {
     content: 'd!';
 }
@@ -251,4 +249,52 @@ select[name="chooseFont"] {
     text-transform: uppercase;
     font-size: 1rem;
     padding-inline-start: 20px;
+}
+
+@media (max-width: 1200px) {
+    .meme-editor {
+        /* flex-direction: column; */
+        gap: 10px;
+    }
+
+    .canvas-container {
+
+    }
+
+    .meme-canvas {
+        width:100%;
+    }
+}
+
+@media (max-width: 983px) {
+    .meme-editor {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .canvas-container {
+        width: 70vw;
+    }
+    .meme-canvas {
+        width: 100%;
+    }
+
+    .canvas-settings {
+        width: 70vw;
+    }
+}
+
+@media (max-width: 580px) {
+.media {
+    flex-direction: column;
+    gap: 10px;
+    align-self: center;
+}
+.canvas-settings .canvas-text {
+    margin: 10px;
+}
+
+.meme-editor .canvas-settings {
+    padding: 0;
+}
 }

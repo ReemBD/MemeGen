@@ -8,6 +8,7 @@ function saveMemesToStorage() {
 }
 
 function _createSavedMemes() {
+
     var savedMemes = loadMemesFromStorage();
     if (!savedMemes || !savedMemes.length) savedMemes = [];
     return savedMemes
@@ -18,7 +19,7 @@ function loadMemesFromStorage() {
 }
 
 function getSavedMemeHTML(idx) {
-    return `<img src=${gSavedMemes[idx].url} onclick="onSaveMemeClicked(${gSavedMemes[idx].id})>`
+    return `<img src="${gSavedMemes[idx].url}" onclick="onSaveMemeClicked(${gSavedMemes[idx].id})>`
 }
 
 function getMemesForDisplay() {
@@ -27,6 +28,4 @@ function getMemesForDisplay() {
 
 function addMeme(meme) {
     gSavedMemes.push({ id: gNextSavedMemeId, url: meme.toDataURL() });
-    saveMemesToStorage();
 }
-

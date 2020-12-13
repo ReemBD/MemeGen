@@ -1,9 +1,8 @@
 function onSaveMeme() {
+    // debugger;
     addMeme(gCanvas);
-    saveMemesToStorage(MEMES_STORAGE_KEY, gSavedMemes);
-    let saveBtn = document.querySelector('.media .save');
-    // saveBtn.classList.add('on-save');
-
+    saveMemesToStorage();
+    renderSavedMemes();
 }
 
 function renderSavedMemes() {
@@ -18,5 +17,4 @@ function renderSavedMemes() {
 function onShowSavedMemes(elLink) {
     var elSavedMemesGallery = document.querySelector('.saved-memes-gallery');
     onChangeActiveScreen(elSavedMemesGallery, elLink);
-    renderSavedMemes();
 }
