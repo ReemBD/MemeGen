@@ -34,11 +34,11 @@ function updateCurrLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt;
 }
 
-function updateselectedLineIdx(idx) {
+function updateSelectedLineIdx(idx) {
     gMeme.selectedLineIdx = idx;
 }
 
-function drawText(text, x, y,idx) {
+function drawText(text, x, y, idx) {
     gCtx.lineWidth = '1.5'
     gCtx.font = `${gMeme.lines[idx].fontSize}px` + ' ' + gMeme.lines[gMeme.selectedLineIdx].fontFamily;
     gCtx.textAlign = gMeme.lines[idx].textAlign;
@@ -114,9 +114,9 @@ function getCanvasProperties() {
 function canvasClicked(ev) {
 
     const { offsetX, offsetY } = ev;
-    const lines = gMeme.lines;
+    const { lines } = gMeme;
 
-    let clickedLine = lines.find(line => {
+    const clickedLine = lines.find(line => {
         return offsetX >= line.x && offsetX <= line.x + measureText(line).width
             && offsetY >= line.y - 50 && offsetY < line.y;
     })

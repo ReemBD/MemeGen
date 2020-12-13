@@ -31,7 +31,7 @@ function onClearCanvas() {
 
 function onSwitchLine(idx = (!gMeme.selectedLineIdx) ? gMeme.selectedLineIdx = 1 : gMeme.selectedLineIdx = 0) {
     // debugger;
-    updateselectedLineIdx(idx);
+    updateSelectedLineIdx(idx);
     document.querySelector('.canvas-text').value = getCurrLineTxt();
     clearPrevLineFocus();
     renderCanvas();
@@ -60,6 +60,8 @@ function onChangeCanvasProp(prop, value, diff = null) {
     renderCanvas();
 }
 
+
+
 function toggleDragStatus() {
     gIsDraggingLine = !gIsDraggingLine;
 }
@@ -70,7 +72,7 @@ function onMouseMove(ev) {
     if (clickedLine && gIsDraggingLine) {
         clickedLine.x = offsetX - (measureText(clickedLine.txt).width / 2);
         clickedLine.y = offsetY + 25;
-        let clickedLineIdx = gMeme.lines.findIndex((line) => { return line === clickedLine })
+        const clickedLineIdx = gMeme.lines.findIndex(line => line === clickedLine)
         onSwitchLine(clickedLineIdx)
         // renderCanvas()
     }

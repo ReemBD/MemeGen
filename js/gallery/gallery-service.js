@@ -22,9 +22,7 @@ function _addImagesKeywords() {
     gImages.forEach((img, idx) => { img.keywords = gKeywords[idx] })
 }
 
-function getImgHTML(img) {
-    return `<img src="memes/${img.id}.jpg" alt="${img.keywords}" onclick="onClickImg(${img.id})">`;
-}
+
 
 function renderGallery() {
     var strHTMLs = gImages.map((img) => {
@@ -37,4 +35,14 @@ function renderGallery() {
 
 function getImgById(id) {
     return gImages.find((img) => img.id === id);
+}
+
+function getImagesForDisplay( str,images = gImages) {
+    if(!str) return images;
+    const matchingImages = images.filter((img) => {
+        let imgKeywords = img.keywords;
+        return (imgKeywords.includes(str) || imgKeywords.find(keyword => { return (keyword.substring(0, str.length)) === str }));
+
+    })
+    return matchingImages;
 }

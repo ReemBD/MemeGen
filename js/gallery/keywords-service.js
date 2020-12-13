@@ -1,4 +1,4 @@
-let gKeywords = [
+const gKeywords = [
     _createImageKeywords("trump presidnt funny"),
     _createImageKeywords("puppies puppy cute sweet"),
     _createImageKeywords("baby cute sweet"),
@@ -19,11 +19,20 @@ let gKeywords = [
     _createImageKeywords("toy-story one-day-this-will-be-yours")
 ]
 
+const gKeywordsMap = {};
+
 function _createImageKeywords(str = 'other') {
     var strToArr = str.split(' ')
     for (var i = 0; i < str.length; i++) {
         str[i].replaceAll('-', ' ');
     }
-
     return strToArr;
+}
+
+function updateKeywordsMap(keyword) {
+    gKeywordsMap[keyword] = (gKeywordsMap[keyword]) ? gKeywordsMap[keyword] + 1 : 1;
+}
+
+function getKeywordsMap() {
+    return gKeywordsMap
 }

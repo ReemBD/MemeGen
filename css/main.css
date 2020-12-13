@@ -205,6 +205,10 @@ button {
     display: flex;
 }
 
+input[name=gallerySearch] {
+    position: relative;
+}
+
 /* HELPERS */
 
 .space-between {

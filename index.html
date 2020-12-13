@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
         integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/main.css">
     <title>Meme Generator</title>
@@ -17,7 +19,9 @@
 <body onload="onInit()">
     <nav class="header-container">
         <div class="main-header main-layout flex space-between">
-            <div class="logo">MemeSchmeme</div>
+            <div class="logo">
+                <span>Meme</span>-<span>Schmeme</span>
+            </div>
             <ul class="main-nav flex">
                 <li><a class="gallery-link active" href="#" onclick="onShowGallery(this)">Gallery</a></li>
                 <li><a href="#" class="memes-gallery-link" onclick="onShowSavedMemes(this)">Memes</a></li>
@@ -30,7 +34,9 @@
         <div class="search-bar flex">
             <input oninput="onSearchGallery(this.value)" type="text" name="gallerySearch" class="search-gallery"
                 placeholder="Search"></input>
-            <div class="most-searched">Lorem ipsum dolor sit amet consectetur.</div>
+            <div class="most-searched flex">
+                <span onclick="onSearchKeyword(this,'funny')">Funny</span><span onclick="onSearchKeyword(this,'animal')"> Animal</span><span onclick="onSearchKeyword(this,'cute')"> Cute</span><span onclick="onSearchKeyword(this,'laugh')"> Laugh</span><span onclick="onSearchKeyword(this,'sweet')"> Sweet</span><span onclick="onSearchKeyword(this,'redicilous')"> Redicilous</span>
+            </div>
             <button class="more"><a href="#"> More</a></button>
         </div>
         <div class="gallery flex main-layout" id="mainGallery">

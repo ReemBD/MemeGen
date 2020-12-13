@@ -14,7 +14,8 @@
     top: 0;
     width: 100%;
     z-index: 1;
-    
+    width: 99%;
+    margin-inline-start: 5px;
 }
 
 .main-header .main-nav {
@@ -23,10 +24,17 @@
 }
 
 .main-header .logo {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+    font-family: 'Nerko One', cursive;
     font-size: 2.5rem;
     padding: 10px;
     user-select: none;
+}
+
+.main-header .logo::after {
+    content: '!';
+    color: orange;
+    font-size: 1.2em;
 }
 
 .main-header .main-nav a {
@@ -90,6 +98,21 @@
     flex-basis: 45%;
     border-radius: 30px;
     padding: 12px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.search-bar .most-searched span {
+    transition: all .2s;
+}
+
+.search-bar .most-searched span::selection {
+    background-color: none;
+}
+
+.search-bar .most-searched span:hover {
+    cursor: pointer;
+    color: rgb(45, 184, 122) !important;
 }
 
 .search-bar .more {
@@ -102,7 +125,7 @@
 }
 
 .gallery {
-    width:100%;
+    width: 100%;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: flex-start;
@@ -123,9 +146,10 @@
     transform: scale(1.05);
 }
 
-.gallery.filtered img{
+.gallery.filtered img {
     flex-grow: unset;
 }
+
 /* MEME EDITOR */
 
 .meme-editor {
@@ -137,7 +161,6 @@
     flex-grow: 1;
     padding: 0 40px;
     border-radius: 20px;
-    
 }
 
 .meme-editor .canvas-options {
@@ -154,10 +177,9 @@
 
 .download-and-share {
     justify-content: space-between;
-    
 }
 
-.download, .share,.save {
+.download, .share, .save {
     padding: 10px 0;
     width: 12em;
     border-radius: 20px;
