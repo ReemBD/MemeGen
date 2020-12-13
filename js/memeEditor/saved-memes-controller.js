@@ -15,6 +15,6 @@ function renderSavedMemes() {
 }
 
 function onShowSavedMemes(elLink) {
-    var elSavedMemesGallery = document.querySelector('.saved-memes-gallery');
+    const  elSavedMemesGallery = document.querySelector('.saved-memes-gallery');
     onChangeActiveScreen(elSavedMemesGallery, elLink);
 }
