@@ -1,8 +1,8 @@
+let gSearchBy;
 
 function renderGallery() {
-    var elSearch = document.querySelector('.search-gallery')
-    var images = getImagesForDisplay(elSearch.value);
-    var strHTMLs = images.map((img) => {
+    const images = getImagesForDisplay(gSearchBy);
+    const strHTMLs = images.map((img) => {
         return getImgHTML(img)
     })
     let gallery = document.querySelector('#mainGallery.filtered')
@@ -18,6 +18,7 @@ function getImgHTML(img) {
 function onSearchGallery(str) {
     if (!str) toggleFilteredGalleryOff();
     else toggleFilteredGalleryOn();
+    gSearchBy = str;
     renderGallery()
 }
 
@@ -54,6 +55,10 @@ function onSearchKeyword(el, keyword) {
     const keywordsMap = getKeywordsMap();
     updateKeywordsMap(keyword);
     const keywordCount = keywordsMap[keyword]
-    el.style.fontSize = (16 + keywordCount) + 'px';
-    el.style.color = `rgb(${255-(10*keywordCount)}, 246, ${255-(10*keywordCount)})`
+    el.style.fontSize = (16 + 2 * keywordCount) + 'px';
+    el.style.color = `rgb(${255 - (20 * keywordCount)}, 246, ${255 - (20 * keywordCount)})`
+    const elSearch = document.querySelector('.search-gallery')
+    gSearchBy = keyword;
+    elSearch.value = keyword
+    onSearchGallery(gSearchBy);
 }

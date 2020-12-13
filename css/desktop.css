@@ -26,15 +26,9 @@
 .main-header .logo {
     /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
     font-family: 'Nerko One', cursive;
-    font-size: 2.5rem;
+    /* font-size: 2.5rem; */
     padding: 10px;
     user-select: none;
-}
-
-.main-header .logo::after {
-    content: '!';
-    color: orange;
-    font-size: 1.2em;
 }
 
 .main-header .main-nav a {

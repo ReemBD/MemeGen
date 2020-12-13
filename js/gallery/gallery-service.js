@@ -1,6 +1,6 @@
 let gNextImgId = 1;
 let gNumOfImgs = 18;
-let gImages = [];
+const gImages = [];
 _createImages(gNumOfImgs);
 _addImagesKeywords();
 
@@ -13,7 +13,7 @@ function _createImage() {
 }
 
 function _createImages(num) {
-    for (var i = 0; i < num; i++) {
+    for (let i = 0; i < num; i++) {
         gImages.push(_createImage());
     }
 }
@@ -25,7 +25,7 @@ function _addImagesKeywords() {
 
 
 function renderGallery() {
-    var strHTMLs = gImages.map((img) => {
+    const strHTMLs = gImages.map((img) => {
         return getImgHTML(img)
     })
     let gallery = document.querySelector('#mainGallery.filtered')
@@ -37,10 +37,11 @@ function getImgById(id) {
     return gImages.find((img) => img.id === id);
 }
 
-function getImagesForDisplay( str,images = gImages) {
-    if(!str) return images;
+function getImagesForDisplay(str, images = gImages) {
+    if (!str) return images;
+    str = str.toLowerCase();
     const matchingImages = images.filter((img) => {
-        let imgKeywords = img.keywords;
+        const imgKeywords = img.keywords;
         return (imgKeywords.includes(str) || imgKeywords.find(keyword => { return (keyword.substring(0, str.length)) === str }));
 
     })

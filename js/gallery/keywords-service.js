@@ -22,7 +22,7 @@ const gKeywords = [
 const gKeywordsMap = {};
 
 function _createImageKeywords(str = 'other') {
-    var strToArr = str.split(' ')
+    const strToArr = str.split(' ')
     for (var i = 0; i < str.length; i++) {
         str[i].replaceAll('-', ' ');
     }
@@ -34,5 +34,5 @@ function updateKeywordsMap(keyword) {
 }
 
 function getKeywordsMap() {
-    return gKeywordsMap
+    return gKeywordsMap;
 }
